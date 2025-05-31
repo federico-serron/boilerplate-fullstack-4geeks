@@ -1,81 +1,85 @@
-# WebApp boilerplate with React JS and Flask API
+# 🔥 Full Stack Boilerplate - Flask + React + PostgreSQL
 
-Build web applications using React.js for the front end and python/flask for your backend API.
+This is a simple and efficient full stack boilerplate designed for modern web development using **Flask (Python backend)**, **React (frontend)**, and **PostgreSQL**. It's ready to run locally or be deployed to a **VPS** using **Docker**.
 
-- Documentation can be found here: https://start.4geeksacademy.com/starters/react-flask
-- Here is a video on [how to use this template](https://www.loom.com/share/f37c6838b3f1496c95111e515e83dd9b)
-- Integrated with Pipenv for package managing.
-- Fast deployment to heroku [in just a few steps here](https://start.4geeksacademy.com/backend/deploy-heroku-posgres).
-- Use of .env file.
-- SQLAlchemy integration for database abstraction.
+## 📦 Tech Stack
 
-### 1) Installation:
+- **Backend:** Flask + SQLAlchemy
+- **Frontend:** React + Vite
+- **Database:** PostgreSQL
+- **Containerization:** Docker + Docker Compose
 
-> If you use Github Codespaces (recommended) or Gitpod this template will already come with Python, Node and the Posgres Database installed. If you are working locally make sure to install Python 3.10, Node 
+---
 
-It is recomended to install the backend first, make sure you have Python 3.8, Pipenv and a database engine (Posgress recomended)
+## 🚀 Getting Started Locally
 
-1. Install the python packages: `$ pipenv install`
-2. Create a .env file based on the .env.example: `$ cp .env.example .env`
-3. Install your database engine and create your database, depending on your database you have to create a DATABASE_URL variable with one of the possible values, make sure you replace the valudes with your database information:
+> This setup assumes you already have Python, Node.js, and PostgreSQL installed on your system.
 
-| Engine    | DATABASE_URL                                        |
-| --------- | --------------------------------------------------- |
-| SQLite    | sqlite:////test.db                                  |
-| MySQL     | mysql://username:password@localhost:port/example    |
-| Postgress | postgres://username:password@localhost:5432/example |
+### 1. Set up environment variables
 
-4. Migrate the migrations: `$ pipenv run migrate` (skip if you have not made changes to the models on the `./src/api/models.py`)
-5. Run the migrations: `$ pipenv run upgrade`
-6. Run the application: `$ pipenv run start`
+Create a `.env` file and set your backend URL:
 
-> Note: Codespaces users can connect to psql by typing: `psql -h localhost -U gitpod example`
-
-### Undo a migration
-
-You are also able to undo a migration by running
-
-```sh
-$ pipenv run downgrade
+```env
+backend_url=http://localhost:5000
 ```
 
-### Backend Populate Table Users
+### 2. Backend Setup
 
-To insert test users in the database execute the following command:
-
-```sh
-$ flask insert-test-users 5
+```bash
+pipenv shell
+pipenv install
+flask db init
+pipenv run migrate
+pipenv run upgrade
+pipenv run start
 ```
 
-And you will see the following message:
+### 3. Frontend Setup (in a new terminal)
 
-```
-  Creating test users
-  test_user1@test.com created.
-  test_user2@test.com created.
-  test_user3@test.com created.
-  test_user4@test.com created.
-  test_user5@test.com created.
-  Users created successfully!
+```bash
+npm install
+npm run start
 ```
 
-### **Important note for the database and the data inside it**
+You can now develop and test the app on your PC locally. 🚧
 
-Every Github codespace environment will have **its own database**, so if you're working with more people eveyone will have a different database and different records inside it. This data **will be lost**, so don't spend too much time manually creating records for testing, instead, you can automate adding records to your database by editing ```commands.py``` file inside ```/src/api``` folder. Edit line 32 function ```insert_test_data``` to insert the data according to your model (use the function ```insert_test_users``` above as an example). Then, all you need to do is run ```pipenv run insert-test-data```.
+---
 
-### Front-End Manual Installation:
+## 🐳 Deploy to VPS with Docker
 
--   Make sure you are using node version 14+ and that you have already successfully installed and runned the backend.
+Make sure your Docker image is built and pushed to Docker Hub (or another container registry):
 
-1. Install the packages: `$ npm install`
-2. Start coding! start the webpack dev server `$ npm run start`
+```bash
+docker push fedesu/boilerplate-fullstack-4geeks:<tagname>
+```
 
-## Publish your website!
+Then, on your VPS, simply run:
 
-This boilerplate it's 100% read to deploy with Render.com and Heroku in a matter of minutes. Please read the [official documentation about it](https://start.4geeksacademy.com/deploy).
+```bash
+docker-compose up -d
+```
 
-### Contributors
+This will pull the image and run it in the background, fully deployed. ✅
 
-This template was built as part of the 4Geeks Academy [Coding Bootcamp](https://4geeksacademy.com/us/coding-bootcamp) by [Alejandro Sanchez](https://twitter.com/alesanchezr) and many other contributors. Find out more about our [Full Stack Developer Course](https://4geeksacademy.com/us/coding-bootcamps/part-time-full-stack-developer), and [Data Science Bootcamp](https://4geeksacademy.com/us/coding-bootcamps/datascience-machine-learning).
+---
 
-You can find other templates and resources like this at the [school github page](https://github.com/4geeksacademy/).
+## 📁 Project Structure
+
+```
+.
+├── src
+│   ├── api         # Flask backend
+│   ├── front       # React frontend
+│   ├── models      # SQLAlchemy models
+│   └── wsgi.py     # Application entry point
+├── Dockerfile
+├── docker-compose.yml
+├── .env
+└── README.md
+```
+
+---
+
+## 👨‍💻 Author
+
+Made with ❤️ by [Fede](https://github.com/fedesuarezdev)
