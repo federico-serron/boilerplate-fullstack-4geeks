@@ -115,4 +115,4 @@ This will pull the image and run it in the background, fully deployed. ✅
 
 ## 👨‍💻 Author
 
-Made with ❤️ by [Fede](https://github.com/fedesuarezdev)
+Made with ❤️ by [Fede](https://github.com/federico-serron) and 4Geeks
